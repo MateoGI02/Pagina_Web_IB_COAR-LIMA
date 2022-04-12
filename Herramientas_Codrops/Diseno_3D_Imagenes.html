@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Image Grid Effects | Demo 3 | Codrops</title>
+	<meta name="description" content="Effect inspiration for opening an image grid item." />
+	<meta name="keywords" content="image grid, effect, inspiration, css, javascript, animation, masonry" />
+	<meta name="author" content="Codrops" />
+	<link rel="shortcut icon" href="Diseno_3D/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="Diseno_3D/css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="Diseno_3D/fonts/font-awesome-4.3.0/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="Diseno_3D/css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="Diseno_3D/css/style3.css" />
+	<script src="Diseno_3D/js/modernizr-custom.js"></script>
+</head>
+
+<body class="demo-3">
+	<div class="container">
+		<header class="codrops-header">
+			<h1>DISEÑOS 3D <span>Prácticas realizadas en el curso de 3d, entre ellas destacan las esferas y el río, cada uno con su respectiva textura e iluminación.</span></h1>
+		<div class="content">
+			<div class="grid">
+				<div class="grid__item" data-size="1280x853">
+					<a href="../Recursos/Portafolio/Diseno_3D/ce886e_ca14389f6e924496b303d0cc0da9583d.png" class="img-wrap"><img src="../Recursos/Portafolio/Diseno_3D/ce886e_ca14389f6e924496b303d0cc0da9583d.png" alt="img01" />
+						<div class="description description--grid">Castillo</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="958x1280">
+					<a href="../Recursos/Portafolio/Diseno_3D/ce886e_56c87c2509cf4478a5d382ee0a72c3f2.png" class="img-wrap"><img src="../Recursos/Portafolio/Diseno_3D/ce886e_56c87c2509cf4478a5d382ee0a72c3f2.png" alt="img02" />
+						<div class="description description--grid">Personaje</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="837x1280">
+					<a href="../Recursos/Portafolio/Diseno_3D/ce886e_cb8893a35c2e4af793f5e78ed60cd7d1.png" class="img-wrap"><img src="../Recursos/Portafolio/Diseno_3D/ce886e_cb8893a35c2e4af793f5e78ed60cd7d1.png" alt="img03" />
+						<div class="description description--grid">Personaje</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1280x961">
+					<a href="../Recursos/Portafolio/Diseno_3D/ce886e_fe346b923b1a434399cc4244d9b4b211.png" class="img-wrap"><img src="../Recursos/Portafolio/Diseno_3D/ce886e_fe346b923b1a434399cc4244d9b4b211.png" alt="img04" />
+						<div class="description description--grid">Personaje</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1280x1131">
+					<a href="../Recursos/Portafolio/Diseno_3D/a3.jpg" class="img-wrap"><img src="../Recursos/Portafolio/Diseno_3D/a3.jpg" alt="img05" />
+						<div class="description description--grid">Paisaje</div>
+					</a>
+				</div>
+				<div class="grid__item" data-size="1280x857">
+					<a href="../Recursos/Portafolio/Diseno_3D/ce886e_4f900291fe964f60acda616aad687dc4.jpg" class="img-wrap"><img src="../Recursos/Portafolio/Diseno_3D/ce886e_4f900291fe964f60acda616aad687dc4.jpg" alt="img06" />
+						<div class="description description--grid">Cerámica Circular</div>
+					</a>
+				</div>
+			</div>
+			<!-- /grid -->
+			<div class="preview">
+				<button class="action action--close"><i class="fa fa-times"></i><span class="text-hidden">Close</span></button>
+				<div class="description description--preview"></div>
+			</div>
+			<!-- /preview -->
+		</div>
+		<!-- /content -->
+		<!-- Related demos -->
+	</div>
+	<!-- /container -->
+	<script src="Diseno_3D/js/imagesloaded.pkgd.min.js"></script>
+	<script src="Diseno_3D/js/masonry.pkgd.min.js"></script>
+	<script src="Diseno_3D/js/classie.js"></script>
+	<script src="Diseno_3D/js/main.js"></script>
+	<script>
+		(function() {
+			var support = { transitions: Modernizr.csstransitions },
+				// transition end event name
+				transEndEventNames = { 'WebkitTransition': 'webkitTransitionEnd', 'MozTransition': 'transitionend', 'OTransition': 'oTransitionEnd', 'msTransition': 'MSTransitionEnd', 'transition': 'transitionend' },
+				transEndEventName = transEndEventNames[ Modernizr.prefixed( 'transition' ) ],
+				onEndTransition = function( el, callback ) {
+					var onEndCallbackFn = function( ev ) {
+						if( support.transitions ) {
+							if( ev.target != this ) return;
+							this.removeEventListener( transEndEventName, onEndCallbackFn );
+						}
+						if( callback && typeof callback === 'function' ) { callback.call(this); }
+					};
+					if( support.transitions ) {
+						el.addEventListener( transEndEventName, onEndCallbackFn );
+					}
+					else {
+						onEndCallbackFn();
+					}
+				};
+
+			new GridFx(document.querySelector('.grid'), {
+				imgPosition : {
+					x : 1,
+					y : 0.75
+				},
+				pagemargin : 50,
+				onOpenItem : function(instance, item) {
+					instance.items.forEach(function(el) {
+						if(item != el) {
+							var delay = Math.floor(Math.random() * 150);
+							el.style.WebkitTransition = 'opacity .4s ' + delay + 'ms cubic-bezier(.7,0,.3,1), -webkit-transform .4s ' + delay + 'ms cubic-bezier(.7,0,.3,1)';
+							el.style.transition = 'opacity .4s ' + delay + 'ms cubic-bezier(.7,0,.3,1), transform .4s ' + delay + 'ms cubic-bezier(.7,0,.3,1)';
+							
+							el.style.WebkitTransform = 'translate3d(0,400px,0)';
+							el.style.transform = 'translate3d(0,400px,0)';
+							el.style.opacity = 0;
+						}
+					});
+				},
+				onCloseItem : function(instance, item) {
+					instance.items.forEach(function(el) {
+						if(item != el) {
+							el.style.WebkitTransition = 'opacity .3s, -webkit-transform .3s';
+							el.style.transition = 'opacity .3s, transform .3s';
+
+							el.style.WebkitTransform = 'translate3d(0,0,0)';
+							el.style.transform = 'translate3d(0,0,0)';
+							el.style.opacity = 1;
+
+							onEndTransition(el, function() {
+								el.style.transition = 'none';
+								el.style.WebkitTransform = 'none';
+							});
+						}
+					});
+				}
+			});
+		})();
+	</script>
+</body>
+
+</html>

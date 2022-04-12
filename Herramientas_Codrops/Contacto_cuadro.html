@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Formulario de contacto</title>
+<link rel="stylesheet" type="text/css" href="FORMULARIO/estilos.css">
+
+</head>
+
+<body>
+<form class="contact_form" action="FORMULARIO/datos.php" method="post">
+<ul>
+ <center>
+ <li>
+ <label for="name">Nombre:</label>
+ <input type="text" name="nombre"
+ placeholder="Mateo Guerrero" required/>
+ </li>
+    <br/> 
+    <li>
+ <label for="email">Email:</label>
+ <input type="email" name="email"
+ placeholder="aguerrero@ejemplo.com"
+ required/>
+ </li>
+  <br/>
+ 
+ <li>
+<label for="Telefono">Telefono:</label>
+<input type="tel" name="tel" pattern="\S{7,9}"
+placeholder="minimo 7 digitos" required/>
+</li>
+ <br/>
+   <li>
+<label for="Asunto">Asunto:</label>
+<textarea name="Asunto" cols="40" rows="6" required>
+</textarea>
+</li>
+ <br/>
+<li>
+<button class="submit" type:"submit">Enviar</button>
+</li>
+
+
+ </ul>
+ </form>
+<p>&nbsp;</p>
+</body>
+</html>
